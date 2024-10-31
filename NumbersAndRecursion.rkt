@@ -67,3 +67,76 @@ that return the factorial of a `non-negative` number.
     [else (* n (fact-rec (sub1 n)))]
     )
   )|#
+;Homework
+(define (not-equal-one-line? x y)
+  (not(= x y))
+  )
+(define (not-equal-guards? x y)
+  (cond
+    [(= x y) #f]
+    [else #t]
+    )
+  )
+(define (inside s f c)
+  (if(= s f)
+     "That is wrong diapason"
+    (if (and( >= c s)( <= s f))
+        "It is in the diapason"
+        #f)
+  ))
+;
+(define (even-if? n)
+  (if(= 0 (remainder n 2)) #t
+     #f))
+(define (even-guards? n)
+  (cond
+    [(= 0(remainder n 2))#t]
+    [else #f]))
+
+(define (sum-cubes-no-pow x y)
+  (+ (* x x x) (* y y y)))
+(define (sum-cubes-pow x y)
+  (+(expt x 3)(expt y 3)))
+  
+(define (sq-avg x y)
+  (/(+ (* x x)(* y y))2))
+(define (gcd x y)
+  (if (= y 0)
+      x
+      (gcd y (remainder x y))))
+(define (can-carry? c k w)
+  (if(<= (* c w) k) #t
+     #f))
+(define (growing-plant up-speed down-speed desired-height)
+  (define (helper height days)
+    (if (>= height desired-height)
+        days
+        (helper (+ (- height down-speed) up-speed) (+ days 1))))
+  (helper 0 1))
+(define (snail height up-speed down-speed)
+  (define (helper current-height days)
+    (if (>= (+ current-height up-speed) height)
+        (+ days 1)
+        (helper (- (+ current-height up-speed) down-speed) (+ days 1))))
+  (helper 0 0))
+(define (rev n)
+  (if (< n 0)
+      "Invalid input: number must be non-negative"
+      (let loop ((num n) (result 0))
+        (if (= num 0)
+            result
+            (loop (quotient num 10) (+ (* result 10) (remainder num 10))))))
+)
+(define (palindrome? n)
+  (if (< n 0)
+      #f 
+      (let loop ((num n) (reversed 0))
+        (if (= num 0)
+            (= n reversed) 
+            (loop (quotient num 10) (+ (* reversed 10) (remainder num 10))))))
+)
+(define (sum-digits-rec num)
+  (if (= num 0)
+      0
+      (+ (remainder num 10) (sum-digits-rec (quotient num 10)))))
+
